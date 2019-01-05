@@ -24,6 +24,8 @@ exports.initArticleRoutes = function (app) {
                         summary: $(this).find('p.teaser').text().trim()
                     }
                 });
+
+                //TODO ITERATE THROUGH ARRAY AND ADD IT TO MONGO
                 res.status(200).json({data: articleList});
             }
         }, (error) => console.log(err) );

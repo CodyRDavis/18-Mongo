@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const ArticleSchema = new Schema({
     title: String,
     link: String,
+    Summary: String,
     note: { type: Schema.Types.ObjectId, ref: "Note"}
 });
 
