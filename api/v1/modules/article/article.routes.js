@@ -1,4 +1,6 @@
 const ctrl = require('./article.controller');
+const mongoose = require('mongoose');
+const db = require('../../services/index');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
@@ -15,18 +17,28 @@ exports.initArticleRoutes = function (app) {
             if (response.status === 200) {
                 const html = response.data;
                 const $ = cheerio.load(html);
+                const Article = mongoose.model('Article');
                 const articleList = []
                 $('.story-text')
                 .each(function(i, element){
-                    articleList[i] = {
+                    result = {
                         title: $(this).find('h3.title').text().trim(),
                         link: $(this).find('a:nth-child(2)').attr('href'),
                         summary: $(this).find('p.teaser').text().trim()
                     }
+                    if (result.title && result.link && result.summary){
+                        Article.create(result)
+                            .then((dbArticle) => {
+                                console.log(dbArticle);
+                            })
+                            .catch ((err) => {
+                                console.log(err);
+                            })
+                    }
                 });
 
                 //TODO ITERATE THROUGH ARRAY AND ADD IT TO MONGO
-                res.status(200).json({data: articleList});
+                res.status(200).json({data: 'scraped!'});
             }
         }, (error) => console.log(err) );
     });
