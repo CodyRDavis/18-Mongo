@@ -26,7 +26,7 @@ exports.initArticleRoutes = function (app) {
                         title: $(this).find('h3.title').text().trim(),
                         link: $(this).find('a:nth-child(2)').attr('href'),
                         summary: $(this).find('p.teaser').text().trim(),
-                        image: $(this).find('img').attr('src')
+                        image: $(this).find('img.img').attr('src')
                     }
 
                     //checking to make sure all info on article needed is available.
