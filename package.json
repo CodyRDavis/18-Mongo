@@ -1,0 +1,26 @@
+{
+  "name": "18-mongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodyRDavis/18-Mongo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodyRDavis/18-Mongo/issues"
+  },
+  "homepage": "https://github.com/CodyRDavis/18-Mongo#readme"
+}

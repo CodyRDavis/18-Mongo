@@ -13,20 +13,25 @@ exports.initArticleRoutes = function (app) {
     });
     app.get("/api/v1/articles/refresh", (req,res, next) => {
         axios.get('https://www.npr.org/')
-        .then((response)=>{
+        .then( (response) => {
+            console.log("got response from axios");
             if (response.status === 200) {
                 const html = response.data;
                 const $ = cheerio.load(html);
                 const Article = mongoose.model('Article');
                 const articleList = []
-                $('.story-text')
+                $('.story-wrap')
                 .each(function(i, element){
                     result = {
                         title: $(this).find('h3.title').text().trim(),
                         link: $(this).find('a:nth-child(2)').attr('href'),
-                        summary: $(this).find('p.teaser').text().trim()
+                        summary: $(this).find('p.teaser').text().trim(),
+                        image: $(this).find('img').attr('src')
                     }
-                    if (result.title && result.link && result.summary){
+
+                    //checking to make sure all info on article needed is available.
+                    //creating new article in the DB if true.
+                    if (result.title && result.link && result.summary && result.image){
                         Article.create(result)
                             .then((dbArticle) => {
                                 console.log(dbArticle);
