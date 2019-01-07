@@ -37,9 +37,7 @@ module.exports.initRoutes = (app) => {
                 image: article.image,
                 summary: article.summary
             });
+            res.redirect('/api/v1/notes');
         }
-
-        res.status(200).json({data: "article saved"});
-
     })
 }

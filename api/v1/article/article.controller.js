@@ -9,17 +9,3 @@ ctrl.newArticle = function(article){
 }
 
 module.exports = ctrl;
-
-
-/*
-const dice = {}
-const db = require('./dice.model')
-
-const crud = require('../crud')
-
-dice.getDice = function () {
-    crud.find(db, 'hello')
-
-}
-module.exports = dice; 
-*/
