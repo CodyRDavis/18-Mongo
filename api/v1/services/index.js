@@ -1,1 +1,3 @@
-require('./mongodb/models');
+module.exports.initServices = (app) => {
+    require('./mongo').initMongo();
+}

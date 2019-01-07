@@ -1,10 +1,17 @@
-const app = require('./server/app');
+const express = require('express');
+const app = express();
 
-//initializing services
-    //in this instance starts mongo
-require('./api/v1/services');
+//MIDDLEWARE
+require('./server/middleware').initMiddleWare(app);
 
-//initializing routing
-require('./api/v1/modules/article/article.routes').initArticleRoutes(app);
-//require('./api/v1/modules/note/note.routes').initNoteRoutes(app);
-require('./server/server').initServer(app);
+//ROUTING
+require('./api/v1/index').initRouting(app);
+
+//SERVICES
+require('./api/v1/services').initServices(app);
+
+
+app.listen(3000, () => {
+    console.log("EXPRESS SERVER: STARTED");
+    console.log("SERVER LISTENING ON PORT: 3000");
+})
